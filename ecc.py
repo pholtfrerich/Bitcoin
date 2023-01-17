@@ -1,6 +1,8 @@
 from random import randint
 from unittest import TestCase
 from . import S256Point
+from helper import encode_base58_checksum, hash160
+from io import BytesIO
 
 import hashlib
 import hmac
