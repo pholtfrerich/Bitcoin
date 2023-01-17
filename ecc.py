@@ -1,9 +1,18 @@
 from random import randint
 from unittest import TestCase
+from . import S256Point
 
 import hashlib
 import hmac
 
+"""Classes in the file:
+    - FieldElement
+    - Point
+    - S256Field
+    - S256Point
+    - Signature
+    - Private Key
+"""
 
 #Constants:
 
@@ -216,7 +225,6 @@ class Point:
             current += current  # <4>
             coef >>= 1  # <5>
         return result
-    # end::source3[]
 
 
 """S256Field Class 
@@ -447,7 +455,7 @@ class Signature:
         return cls(r, s)
 
 
-"""Signature Class 
+"""PrivateKey Class 
     Description: class of object containing eG = R
     Attributes (init):
         inputs: 
@@ -729,9 +737,9 @@ class S256Test(TestCase):
         s = 0xc7207fee197d27c618aea621406f6bf5ef6fca38681d82b2f06fddbdce6feab6
         self.assertTrue(point.verify(z, Signature(r, s)))
 class PrivateKeyTest(TestCase):
-
     def test_sign(self):
         pk = PrivateKey(randint(0, N))
         z = randint(0, 2**256)
         sig = pk.sign(z)
         self.assertTrue(pk.point.verify(z, sig))
+

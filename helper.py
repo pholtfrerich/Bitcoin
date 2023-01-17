@@ -2,10 +2,7 @@ from unittest import TestCase, TestSuite, TextTestRunner
 
 import hashlib
 
-
-# tag::source1[]
 BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
-# end::source1[]
 
 
 def run(test):
@@ -14,11 +11,9 @@ def run(test):
     TextTestRunner().run(suite)
 
 
-# tag::source4[]
 def hash160(s):
     '''sha256 followed by ripemd160'''
     return hashlib.new('ripemd160', hashlib.sha256(s).digest()).digest()  # <1>
-# end::source4[]
 
 
 def hash256(s):
@@ -51,7 +46,6 @@ def encode_base58(s):
 
 def encode_base58_checksum(b):
     return encode_base58(b + hash256(b)[:4])
-# end::source3[]
 
 
 def decode_base58(s):
@@ -107,6 +101,7 @@ def read_varint(s):
         # anything else is just the integer
         return i
 
+
 """encode_varint(s): (does opposite of read(s))
     inputs: integer for number of inputs in Tx
     outputs: returns the varint byte representation for the number of inputs in Tx
@@ -123,7 +118,6 @@ def encode_varint(i):
         return b'\xff' + int_to_little_endian(i, 8)
     else:
         raise ValueError('integer too large: {}'.format(i))
-# end::source1[]
 
 
 class HelperTest(TestCase):

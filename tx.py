@@ -289,7 +289,6 @@ class TxIn:
         '''
         tx = self.fetch_tx(testnet=testnet)
         return tx.tx_outs[self.prev_index].script_pubkey
-    # end::source8[]
 
 
 """TxOut:
@@ -337,7 +336,6 @@ class TxOut:
         result = int_to_little_endian(self.amount, 8)
         result += self.script_pubkey.serialize()
         return result
-    # end::source4[]
 
 
 class TxTest(TestCase):

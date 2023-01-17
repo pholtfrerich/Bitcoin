@@ -13,7 +13,6 @@ from helper import (
 )
 
 
-# tag::source3[]
 def encode_num(num):
     if num == 0:
         return b''
